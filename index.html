@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/styles.css" />
+    <script src="./pages/myLibrary.js" defer></script>
+    <script src="./pages/app.js" defer></script>
+    <title>Library</title>
+  </head>
+  <body>
+    <header>
+      <h1>Our Tiny Geeky Library</h1>
+    </header>
+
+    <main>
+      <div class="new-book">
+        <button id="toggleButton" onclick="toggleFormVisibility()">
+          New Book
+        </button>
+        <form id="addBookForm" class="add-book-form">
+          <div>
+            <label for="author">Author:</label>
+            <br />
+            <input type="text" id="author" />
+          </div>
+
+          <div>
+            <label for="book">Book:</label>
+            <br />
+            <input type="text" id="book" />
+          </div>
+
+          <div>
+            <label for="pages">Pages:</label>
+            <br />
+            <input type="number" id="pages" />
+          </div>
+
+          <div>
+            <label for="isRead">Read?</label>
+            <br />
+            <input type="checkbox" id="isRead" />
+          </div>
+          <button onclick="createBook()">Add Book</button>
+        </form>
+      </div>
+      <div class="table-container">
+        <table id="books-table">
+          <tr>
+            <th>Author</th>
+            <th>Book</th>
+            <th>Pages</th>
+            <th>Read</th>
+            <th>Remove</th>
+          </tr>
+        </table>
+      </div>
+    </main>
+
+    <footer>
+      <p>© The Kreativs</p>
+    </footer>
+  </body>
+</html>
