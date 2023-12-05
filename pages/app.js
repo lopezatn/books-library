@@ -17,14 +17,17 @@ function addBookToTable(book) {
   row.setAttribute("row-id", book.id);
 
   const cell1 = row.insertCell(0);
+  cell1.setAttribute("field-name", 'author');
   cell1.textContent = book.author;
-  cell1.addEventListener("click", () => editBookCell(cell1));
+  cell1.addEventListener("mousedown", () => editBookCell(cell1));
   const cell2 = row.insertCell(1);
+  cell2.setAttribute("field-name", 'title');
   cell2.textContent = book.title;
-  cell2.addEventListener("click", () => editBookCell(cell2));
+  cell2.addEventListener("mousedown", () => editBookCell(cell2));
   const cell3 = row.insertCell(2);
+  cell3.setAttribute("field-name", 'pages');
   cell3.textContent = book.pages;
-  cell3.addEventListener("click", () => editBookCell(cell3));
+  cell3.addEventListener("mousedown", () => editBookCell(cell3));
   const cell4 = row.insertCell(3);
   cell4.appendChild(createReadButton(book.isRead, book.id));
   const cell5 = row.insertCell(4);
@@ -36,18 +39,13 @@ function editBookCell(cell) {
 
   cell.addEventListener("blur", () => {
     const rowId = cell.parentNode.getAttribute("row-id");
-    const cellIndex = cell.cellIndex;
-
-// this will eventually go on a sepparated function since is not implicit to the editBookCell function.
-    if (cellIndex === 0) {
-      myLibrary[rowId].author = cell.textContent;
-    } else if (cellIndex === 1) {
-      myLibrary[rowId].title = cell.textContent;
-    } else if (cellIndex === 2) {
-      myLibrary[rowId].pages = cell.textContent;
-    }
-
-    updateLocalStorage();
+    const key = cell.getAttribute("field-name");
+    const value = cell.textContent;
+    const modifiedBook = {
+      id: parseInt(rowId),
+      [key]: value,
+    };
+    editBookObject(modifiedBook);
   });
 }
 

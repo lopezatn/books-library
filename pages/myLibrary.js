@@ -13,8 +13,20 @@ function loadLibraryFromLocalStorage() {
 }
 
 function updateLocalStorage() {
-    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-    // console.log(myLibrary);
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
+function editBookObject(book) {
+  const bookId = book.id;
+
+  for (let i = 0; i < myLibrary.length; i++) {
+    const currentBook = myLibrary[i];
+    if (currentBook.id === bookId) {
+      myLibrary[i] = { ...currentBook, ...book };
+      updateLocalStorage();
+      break;
+    }
+  }
 }
 
 function addBookToLibrary(book) {
@@ -47,4 +59,5 @@ module.exports = {
   changeBookReadStatus,
   updateLocalStorage,
   loadLibraryFromLocalStorage,
+  editBookObject,
 };
