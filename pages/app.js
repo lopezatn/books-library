@@ -41,11 +41,20 @@ function editBookCell(cell) {
     const rowId = cell.parentNode.getAttribute("row-id");
     const key = cell.getAttribute("field-name");
     const value = cell.textContent;
+    if(key === 'pages' && isNaN(value)) {
+      alert('The value of pages must be a number');
+      return;
+  } else if ((key === 'title' || key === 'author') && /\d/.test(value)){
+    alert('There can be no numbers in ' + key);
+    console.log(key, value)
+  } else {
     const modifiedBook = {
       id: parseInt(rowId),
       [key]: value,
     };
     editBookObject(modifiedBook);
+    return;
+  }
   });
 }
 
@@ -113,6 +122,6 @@ function createBook() {
     addBookToTable(newBook);
     eraseInputsValue();
   } else {
-    alert("Please fill all the fields.");
+    alert("Please fill in all the fields.");
   }
 }
