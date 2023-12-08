@@ -116,12 +116,27 @@ function createBook() {
   const pages = document.getElementById("pages").value;
   const isRead = document.getElementById("isRead").checked;
 
-  if (author.length > 0 && book.length > 0 && pages.length > 0) {
+  if (!isNaN(author) || !isNaN(book)) {
+    alert('You cant have numbers in author or title');
+  } else if (author.length == 0 || book.length == 0 || pages.length == 0) {
+    alert('Please fill in all the fields');
+  } else {
     const newBook = new Book(author, book, pages, isRead);
     addBookToLibrary(newBook);
     addBookToTable(newBook);
-    eraseInputsValue();
-  } else {
-    alert("Please fill in all the fields.");
+    eraseInputsValue();    
   }
+
+  // if (author.length > 0 && book.length > 0 && pages.length > 0) {
+  //   const newBook = new Book(author, book, pages, isRead);
+  //   addBookToLibrary(newBook);
+  //   addBookToTable(newBook);
+  //   eraseInputsValue();
+  // } else {
+  //   alert("Please fill in all the fields.");
+  // }
 }
+
+module.exports = {
+  editBookCell,
+};
