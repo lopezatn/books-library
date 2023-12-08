@@ -133,14 +133,6 @@ function createBook() {
     eraseInputsValue();
   }
 
-  // if (author.length > 0 && book.length > 0 && pages.length > 0) {
-  //   const newBook = new Book(author, book, pages, isRead);
-  //   addBookToLibrary(newBook);
-  //   addBookToTable(newBook);
-  //   eraseInputsValue();
-  // } else {
-  //   alert("Please fill in all the fields.");
-  // }
 }
 
 module.exports = {

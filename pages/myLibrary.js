@@ -30,9 +30,20 @@ function editBookObject(book) {
 }
 
 function addBookToLibrary(book) {
-  book.id = myLibrary.length;
+  book.id = createBookId();
   myLibrary.push(book);
   updateLocalStorage();
+}
+
+
+function createBookId() {
+  let id, foundIndex;
+  do {
+    id = Math.floor(Math.random() * (myLibrary.length * 2));
+    foundIndex = myLibrary.findIndex((book) => book.id === id);
+  } while (foundIndex >= 0);
+
+  return id;
 }
 
 function removeBookFromLibrary(id) {
