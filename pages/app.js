@@ -116,15 +116,21 @@ function createBook() {
   const pages = document.getElementById("pages").value;
   const isRead = document.getElementById("isRead").checked;
 
-  if (!isNaN(author) || !isNaN(book)) {
-    alert('You cant have numbers in author or title');
-  } else if (author.length == 0 || book.length == 0 || pages.length == 0) {
+  if (/\d/.test(author) || /\d/.test(book)) {
+    alert('Numbers are allowed only in the pages.');
+    return;
+  } else if (/-\d/.test(pages)) {
+    alert('Negative numbers are not allowed, check your pages.');
+    return;
+  }
+   else if (author.length == 0 || book.length == 0 || pages.length == 0) {
     alert('Please fill in all the fields');
+    return;
   } else {
     const newBook = new Book(author, book, pages, isRead);
     addBookToLibrary(newBook);
     addBookToTable(newBook);
-    eraseInputsValue();    
+    eraseInputsValue();
   }
 
   // if (author.length > 0 && book.length > 0 && pages.length > 0) {
